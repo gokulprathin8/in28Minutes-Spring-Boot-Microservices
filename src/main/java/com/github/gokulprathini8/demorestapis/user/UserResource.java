@@ -36,4 +36,12 @@ public class UserResource {
         return ResponseEntity.created(location).build();
     }
 
+    @DeleteMapping("/users/{id}")
+    public void deleteUserById (@PathVariable int id) {
+        User user = service.deleteOne(id);
+        if (user == null) {
+            throw new UserNotFoundException("id - " + id);
+        }
+    }
+
 }
